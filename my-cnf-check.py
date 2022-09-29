@@ -6,9 +6,9 @@ import csv
 import boto3
 
 
-# Below Code will read parameter store and will create dictionary of all values.
+# Below Code will read parameter store and will create dictionary of all values. Replace parameter store name in ParameterName variable
 client = boto3.client('ssm',region_name='us-east-1')
-ParameterName = '/ritesh/mysql/31-219-mycnf'
+ParameterName = '/PARAMETER-STORENAME/replaceit'
 resp= client.get_parameter(Name = ParameterName)
 
 print(len(resp))
@@ -23,7 +23,7 @@ print(parameter_grpup_dictionary)
 
 
 
-# Below code will read my.cnf file and will make dictionary  of all parameters specified in mysqld section
+# Below code will read my.cnf file and will make dictionary  of all parameters specified in mysqld section . Replace my.cnf location 
 
 p = subprocess.Popen("my_print_defaults --defaults-file=/etc/my.cnf mysqld  | tr '=' '\t'  > /tmp/test123.txt;sed -i 's/--//g' /tmp/test123.txt; ", stdout=subprocess.PIPE, shell=True)
 #print(p.communicate())
@@ -118,7 +118,7 @@ if not final_variables_to_alter:
 
 # Below section will make changes in mysql database (Query Execution)
 for variable1 in final_variables_to_alter:
-    dbPassword="Root@1234"
+    dbPassword="******"
     dbUser = "root"
     hostip='localhost'
     connectionObject = pymysql.connect(host=hostip , user=dbUser, password=dbPassword, connect_timeout=5)
