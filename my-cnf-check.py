@@ -1,9 +1,8 @@
-mport sys
+import sys
 import subprocess
 import pymysql
 import json
 import csv
-import json
 import boto3
 
 
